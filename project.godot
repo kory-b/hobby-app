@@ -14,6 +14,11 @@ config/name="hobby_app"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=640
+
 [input]
 
 ui_left={

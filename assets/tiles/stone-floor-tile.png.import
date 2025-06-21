@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8a7lmrw745x5"
-path="res://.godot/imported/link-sprite-sheet.png-58a91f3fa5ada0aeb19d0bd8dd424cb7.ctex"
+uid="uid://cdfvy8fjv4hl"
+path="res://.godot/imported/stone-floor-tile.png-9c1d349233fa7390e401e79ffbf76fc6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/link-sprite-sheet.png"
-dest_files=["res://.godot/imported/link-sprite-sheet.png-58a91f3fa5ada0aeb19d0bd8dd424cb7.ctex"]
+source_file="res://assets/tiles/stone-floor-tile.png"
+dest_files=["res://.godot/imported/stone-floor-tile.png-9c1d349233fa7390e401e79ffbf76fc6.ctex"]
 
 [params]
 
