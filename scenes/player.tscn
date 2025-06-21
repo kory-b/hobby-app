@@ -379,7 +379,6 @@ animations = [{
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(598, 354)
 sprite_frames = SubResource("SpriteFrames_2gdjj")
 animation = &"face_down"
 frame_progress = 0.0420914
