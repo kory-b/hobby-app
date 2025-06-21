@@ -19,9 +19,12 @@ sources/2 = SubResource("TileSetAtlasSource_jwt77")
 resource_name = "Stone Wall"
 texture = ExtResource("1_oik7h")
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_4cqlv"]
+physics_layer_0/collision_layer = 1
 sources/3 = SubResource("TileSetAtlasSource_oik7h")
 
 [node name="HomeBase" type="Node2D"]
