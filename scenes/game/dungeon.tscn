@@ -29,13 +29,14 @@ script = ExtResource("1_n88lp")
 
 [node name="Player" parent="." instance=ExtResource("1_hruoa")]
 z_index = 10
-position = Vector2(639, 314)
+position = Vector2(-2, 0)
 
 [node name="MainMenu" type="Button" parent="Player"]
-offset_left = -639.0
-offset_top = -314.0
-offset_right = -580.0
-offset_bottom = -283.0
+z_index = 15
+offset_left = -312.0
+offset_top = -174.0
+offset_right = -253.0
+offset_bottom = -143.0
 text = "PAUSE
 "
 
