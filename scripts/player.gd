@@ -35,3 +35,7 @@ func _physics_process(_delta):
 		anim_sprite.play("face_%s" % last_direction)
 
 	move_and_slide()
+
+
+func gotoMainMenu() -> void:
+	$"/root/SceneManager".change_scene("res://scenes/main.tscn")
