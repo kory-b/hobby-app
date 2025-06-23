@@ -3,9 +3,11 @@ extends CharacterBody2D
 
 const SPEED := 200.0
 
-@onready var anim_sprite := $AnimatedSprite2D
+@onready var link := $LinkTexture
 
 var last_direction := "down"
+
+var placeholder := true
 
 func _physics_process(_delta):
 	var input_vector := Vector2(
@@ -17,22 +19,24 @@ func _physics_process(_delta):
 		input_vector = input_vector.normalized()
 		velocity = input_vector * SPEED
 
+		if link.is_visible_in_tree():
 		# Animation logic: left/right takes priority
-		if input_vector.x > 0:
-			anim_sprite.play("walk_right")
-			last_direction = "right"
-		elif input_vector.x < 0:
-			anim_sprite.play("walk_left")
-			last_direction = "left"
-		elif input_vector.y > 0:
-			anim_sprite.play("walk_down")
-			last_direction = "down"
-		elif input_vector.y < 0:
-			anim_sprite.play("walk_up")
-			last_direction = "up"
+			if input_vector.x > 0:
+				link.play("walk_right")
+				last_direction = "right"
+			elif input_vector.x < 0:
+				link.play("walk_left")
+				last_direction = "left"
+			elif input_vector.y > 0:
+				link.play("walk_down")
+				last_direction = "down"
+			elif input_vector.y < 0:
+				link.play("walk_up")
+				last_direction = "up"
 	else:
 		velocity = Vector2.ZERO
-		anim_sprite.play("face_%s" % last_direction)
+		if link.is_visible_in_tree():
+			link.play("face_%s" % last_direction)
 
 	move_and_slide()
 
