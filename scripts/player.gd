@@ -40,6 +40,9 @@ func _physics_process(_delta):
 
 	move_and_slide()
 
+	# Print the size of the viewport.
+	#print("Viewport Resolution is: ", get_viewport().get_visible_rect().size)
+	#pass
 
 func gotoMainMenu() -> void:
 	$"/root/SceneManager".change_scene("res://scenes/main.tscn")
