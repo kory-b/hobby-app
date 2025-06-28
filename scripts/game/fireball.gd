@@ -15,7 +15,7 @@ func _physics_process(delta):
 	rotation += rotation_speed * delta
 
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	print("Fireball hit something")
 	#$GPUParticles2D.emitting = false
 	#$Polygon2D.hide()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b08ykvxa4ir4"]
 
-[ext_resource type="Script" uid="uid://b2kjwjbxl3smr" path="res://scripts/game/fireball.gd" id="1_4ua26"]
+[ext_resource type="Script" uid="uid://b2kjwjbxl3smr" path="res://scripts/game/fireball.gd" id="1_48630"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ua26"]
 
@@ -31,8 +31,8 @@ collision_friction = 0.0
 collision_bounce = 1.0
 
 [node name="Fireball" type="Area2D"]
-collision_mask = 2
-script = ExtResource("1_4ua26")
+collision_mask = 6
+script = ExtResource("1_48630")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.847059, 0, 0, 1)
