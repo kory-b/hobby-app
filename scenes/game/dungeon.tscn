@@ -21,7 +21,7 @@ texture = ExtResource("3_n88lp")
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_qcasg"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 sources/3 = SubResource("TileSetAtlasSource_sval7")
 
 [node name="Dungeon" type="Node2D"]

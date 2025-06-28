@@ -29,6 +29,11 @@ var _rooms = [] # An array to store the generated rooms (as Rect2i).
 var _player_spawn_pos: Vector2i
 var _exit_pos: Vector2i
 
+var fireball_scene = preload("res://scenes/game/fireball.tscn")
+
+var attack_cooldown = .5
+var last_attack = 0
+
 # --- GODOT LIFECYCLE METHODS ---
 
 func _ready():
@@ -130,3 +135,39 @@ func _carve_hallway(start: Vector2i, end: Vector2i):
 func setFloorTile(position: Vector2i):
 	wall_layer.erase_cell(position)
 	floor_layer.set_cell(position, FLOOR_SOURCE_ID, FLOOR_ATLAS_COORDS)
+
+func _unhandled_input(event):
+	# Check if the input event is a left mouse button press.
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+		# Get the direction from the player to the mouse.
+		print("Mouse Event: ", event)
+		var direction = get_global_mouse_position() - player.position
+		
+		# We normalize the direction to get a unit vector.
+		direction = direction.normalized()
+		
+		# Spawn the fireball and pass the direction to it.
+		spawn_fireball(direction)
+
+
+
+func spawn_fireball(direction):
+	var now = Time.get_unix_time_from_system()
+	print(now)
+	
+	if now - last_attack < attack_cooldown:
+		return;
+	
+	# Create an instance of the fireball scene.
+	var fireball = fireball_scene.instantiate()
+	
+	# Set the fireball's initial position and rotation.
+	fireball.position = $Player.position
+	fireball.rotation = direction.angle()
+	
+	# Set the fireball's direction.
+	fireball.direction = direction
+	
+	# Add the fireball to the scene tree.
+	get_parent().add_child(fireball)
+	last_attack = now;
