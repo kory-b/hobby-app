@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b1gqkf0bigllg"]
 
-[ext_resource type="Script" uid="uid://igp70eo08xga" path="res://scripts/game/DungeonGenerator.gd" id="1_vniqc"]
-[ext_resource type="PackedScene" uid="uid://bjuonfevw8gma" path="res://scenes/game/Player.tscn" id="2_y60a4"]
+[ext_resource type="Script" uid="uid://igp70eo08xga" path="res://game/scenes/game/dungeon_generator.gd" id="1_vniqc"]
+[ext_resource type="PackedScene" uid="uid://bjuonfevw8gma" path="res://game/entities/player/player.tscn" id="2_y60a4"]
 [ext_resource type="Texture2D" uid="uid://bq2qwlk1hmt53" path="res://assets/tiles/dungeon_tiles/floor_tiles.png" id="3_tm2xg"]
 [ext_resource type="Texture2D" uid="uid://5jm54sej1gp6" path="res://assets/tiles/stone-wall-tile.png" id="4_7ut51"]
 
