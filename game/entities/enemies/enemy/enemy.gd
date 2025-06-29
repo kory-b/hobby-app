@@ -8,7 +8,6 @@ extends CharacterBody2D
 var t: float = 0.0
 
 func _ready():
-	print("Anim node is: ", anim)
 	anim.play("idle")
 	$HealthComponent.max_health = 50
 
@@ -27,7 +26,7 @@ func _physics_process(delta):
 
 func _on_unit_died() -> void:
 	print("Enemy Died!")
-	State.shards += 10
+	GlobalState.shards += 10
 	queue_free()
 	
 func take_damage(damage):

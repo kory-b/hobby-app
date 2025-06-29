@@ -1,8 +1,12 @@
-[gd_scene load_steps=55 format=3 uid="uid://bjuonfevw8gma"]
+[gd_scene load_steps=59 format=3 uid="uid://bjuonfevw8gma"]
 
 [ext_resource type="Script" uid="uid://ck2dan8jct3pi" path="res://game/entities/player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c8a7lmrw745x5" path="res://assets/characters/link-sprite-sheet.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://d2wfwo2x7tqnm" path="res://assets/tiles/Player_placeholder.png" id="3_u3rb4"]
+[ext_resource type="Script" uid="uid://blionrlb4f6lq" path="res://common/state_machine/state_machine.gd" id="4_cjfdk"]
+[ext_resource type="Script" uid="uid://dqruoijd822sn" path="res://game/entities/player/states/idle.gd" id="5_oic1i"]
+[ext_resource type="Script" uid="uid://cmmsmv02vlrhy" path="res://game/entities/player/states/move.gd" id="6_v0nmi"]
+[ext_resource type="Script" uid="uid://cmgcqf3lyxahe" path="res://game/component/health_component.gd" id="7_dhej3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nybob"]
 atlas = ExtResource("3_u3rb4")
@@ -415,3 +419,17 @@ position = Vector2(-1, -13)
 shape = SubResource("CapsuleShape2D_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("4_cjfdk")
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_oic1i")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("6_v0nmi")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("7_dhej3")
+metadata/_custom_type_script = "uid://cmgcqf3lyxahe"
