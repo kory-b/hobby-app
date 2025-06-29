@@ -1,5 +1,5 @@
-extends CharacterBody2D
 class_name Enemy
+extends CharacterBody2D
 
 @export var speed: float = 80.0
 
@@ -10,6 +10,8 @@ var t: float = 0.0
 func _ready():
 	print("Anim node is: ", anim)
 	anim.play("idle")
+	$HealthComponent.max_health = 50
+
 
 func _physics_process(delta):
 	t += delta                     # accumulate seconds
@@ -21,3 +23,12 @@ func _physics_process(delta):
 		anim.play("fly")
 	else:
 		anim.play("idle")
+
+
+func _on_unit_died() -> void:
+	print("Enemy Died!")
+	queue_free()
+	
+func take_damage(damage):
+	$HealthComponent.take_damage(damage)
+	

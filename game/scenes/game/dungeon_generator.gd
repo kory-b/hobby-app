@@ -4,7 +4,7 @@ extends Node2D
 # How many enemies per room (you can tweak these in the Inspector)
 @export var min_enemies_per_room: int = 1
 @export var max_enemies_per_room: int = 3
-@export var enemy_scene: PackedScene = preload("res://scenes/game/Enemy.tscn")
+@export var enemy_scene: PackedScene = preload("res://game/entities/enemies/enemy/enemy.tscn")
 
 # A node to hold all spawned enemies
 @onready var enemies_root: Node2D = get_node("Enemies")
@@ -35,7 +35,7 @@ var _rooms = [] # An array to store the generated rooms (as Rect2i).
 var _player_spawn_pos: Vector2i
 var _exit_pos: Vector2i
 
-var fireball_scene = preload("res://scenes/game/fireball.tscn")
+var fireball_scene = preload("res://game/entities/fireball/fireball.tscn")
 
 var attack_cooldown = .5
 var last_attack = 0

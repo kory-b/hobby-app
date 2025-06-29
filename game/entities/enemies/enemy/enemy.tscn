@@ -1,0 +1,204 @@
+[gd_scene load_steps=43 format=3 uid="uid://3wdbrmewwae1"]
+
+[ext_resource type="Script" uid="uid://cd3rhv8t86dxt" path="res://game/entities/enemies/enemy/enemy.gd" id="1_cpwir"]
+[ext_resource type="Texture2D" uid="uid://d2wfwo2x7tqnm" path="res://assets/tiles/Player_placeholder.png" id="2_mmhgt"]
+[ext_resource type="Texture2D" uid="uid://dhmrujl71hkee" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_001.png" id="3_516tk"]
+[ext_resource type="Texture2D" uid="uid://cw85hyhqv6rkn" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_002.png" id="4_4i4lh"]
+[ext_resource type="Texture2D" uid="uid://dvjanodlxiuo2" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_003.png" id="5_lvulp"]
+[ext_resource type="Texture2D" uid="uid://b42r1gakd74yr" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_004.png" id="6_v1ynf"]
+[ext_resource type="Texture2D" uid="uid://tew814kb0qrq" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_005.png" id="7_j8nmc"]
+[ext_resource type="Texture2D" uid="uid://cmvg7oyctihrw" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_006.png" id="8_u8l2e"]
+[ext_resource type="Texture2D" uid="uid://c36w4pnt0qgcu" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_007.png" id="9_fhmmt"]
+[ext_resource type="Texture2D" uid="uid://buw8uchgvif00" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_008.png" id="10_p1mpb"]
+[ext_resource type="Texture2D" uid="uid://dqv63g2bnxph0" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_009.png" id="11_exye3"]
+[ext_resource type="Texture2D" uid="uid://c2nb20wsliraj" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_010.png" id="12_i7816"]
+[ext_resource type="Texture2D" uid="uid://hlabxooaeso" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_011.png" id="13_8qwbd"]
+[ext_resource type="Texture2D" uid="uid://caxj3ya1p0eee" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_012.png" id="14_lq6f0"]
+[ext_resource type="Texture2D" uid="uid://0yjiedh6cge8" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_013.png" id="15_tlcu6"]
+[ext_resource type="Texture2D" uid="uid://cx83u1stlq5q2" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_014.png" id="16_1xttp"]
+[ext_resource type="Texture2D" uid="uid://bqsccex68i73r" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_015.png" id="17_k15gw"]
+[ext_resource type="Texture2D" uid="uid://bqq65nf2r1li8" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_016.png" id="18_5jvc3"]
+[ext_resource type="Texture2D" uid="uid://bwqguu316fys3" path="res://assets/monsters/monster_0/fly/0_Monster_Fly_017.png" id="19_lmsqj"]
+[ext_resource type="Texture2D" uid="uid://n5q1shpjof8w" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_000.png" id="20_jev4x"]
+[ext_resource type="Texture2D" uid="uid://ct8ef5vjetcse" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_001.png" id="21_2heaj"]
+[ext_resource type="Texture2D" uid="uid://bsfb8agew4uay" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_002.png" id="22_ijeqa"]
+[ext_resource type="Texture2D" uid="uid://brw38h0utax2i" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_003.png" id="23_5paew"]
+[ext_resource type="Texture2D" uid="uid://de3gtrfvb6set" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_004.png" id="24_isw6w"]
+[ext_resource type="Texture2D" uid="uid://cduxybj6bld4v" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_005.png" id="25_clqkc"]
+[ext_resource type="Texture2D" uid="uid://dnf1gdjqg1pch" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_006.png" id="26_ie3xa"]
+[ext_resource type="Texture2D" uid="uid://b8hypgvqr37v1" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_007.png" id="27_cl7x1"]
+[ext_resource type="Texture2D" uid="uid://cbtj4ywllo22q" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_008.png" id="28_v47ef"]
+[ext_resource type="Texture2D" uid="uid://cmw811ko065af" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_009.png" id="29_oyxuw"]
+[ext_resource type="Texture2D" uid="uid://dupsukdrpam1b" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_010.png" id="30_q1r62"]
+[ext_resource type="Texture2D" uid="uid://m60jco0n6nt8" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_011.png" id="31_hp6h1"]
+[ext_resource type="Texture2D" uid="uid://d30r4rqvfl601" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_012.png" id="32_2wayx"]
+[ext_resource type="Texture2D" uid="uid://ccg42t71tflcx" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_013.png" id="33_y4m6t"]
+[ext_resource type="Texture2D" uid="uid://ct4j84quuquys" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_014.png" id="34_txmp8"]
+[ext_resource type="Texture2D" uid="uid://12a2tmjyyqjq" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_015.png" id="35_y5cf5"]
+[ext_resource type="Texture2D" uid="uid://dpnkukryw82wb" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_016.png" id="36_j1h8j"]
+[ext_resource type="Texture2D" uid="uid://6fv7102bkwic" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_017.png" id="37_wjcik"]
+[ext_resource type="Script" uid="uid://cmgcqf3lyxahe" path="res://game/component/health_component.gd" id="38_n8nf3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nybob"]
+atlas = ExtResource("2_mmhgt")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_68xwl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nybob")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2gdjj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_516tk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4i4lh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lvulp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_v1ynf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_j8nmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_u8l2e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fhmmt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_p1mpb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_exye3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_i7816")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8qwbd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_lq6f0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_tlcu6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_1xttp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_k15gw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_5jvc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_lmsqj")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 60.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_jev4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_2heaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_ijeqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_5paew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_isw6w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_clqkc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_ie3xa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_cl7x1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_v47ef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_oyxuw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_q1r62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_hp6h1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_2wayx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_y4m6t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_txmp8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_y5cf5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_j1h8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_wjcik")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 60.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
+radius = 5.0
+height = 16.0
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_cpwir")
+
+[node name="PlaceHolder" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_68xwl")
+
+[node name="EnemyTexture" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_2gdjj")
+animation = &"fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_g2els")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("38_n8nf3")
+metadata/_custom_type_script = "uid://cmgcqf3lyxahe"
+
+[connection signal="died" from="HealthComponent" to="." method="_on_unit_died"]
