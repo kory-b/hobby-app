@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://deqeqw0d8ua0"]
+
+[ext_resource type="Script" uid="uid://cmwnn5rbtl1mv" path="res://game/scenes/town/town.gd" id="1_hywto"]
+
+[node name="Town" type="Node2D"]
+script = ExtResource("1_hywto")
+
+[node name="Enter Dungeon" type="Button" parent="."]
+offset_left = 267.0
+offset_top = 97.0
+offset_right = 275.0
+offset_bottom = 105.0
+text = "Enter Dungeon"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 283.0
+offset_top = 33.0
+offset_right = 375.0
+offset_bottom = 82.0
+text = "Town Scene
+"
+
+[connection signal="pressed" from="Enter Dungeon" to="." method="enter_dungeon"]

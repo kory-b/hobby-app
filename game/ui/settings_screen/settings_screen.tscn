@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhvil3jyajwd7"]
+
+[ext_resource type="Script" uid="uid://b8h41yudx7six" path="res://game/ui/settings_screen/settings_screen.gd" id="1_mwbxr"]
+
+[node name="SettingsScreen" type="Node"]
+script = ExtResource("1_mwbxr")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 214.0
+offset_top = 34.0
+offset_right = 254.0
+offset_bottom = 57.0
+rotation = -0.00516901
+text = "Settings screen"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 118.0
+offset_top = 40.0
+offset_right = 163.0
+offset_bottom = 71.0
+text = "Back"
+
+[connection signal="pressed" from="Button" to="." method="exit_settings"]
