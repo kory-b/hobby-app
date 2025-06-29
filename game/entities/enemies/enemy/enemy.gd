@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var anim: AnimatedSprite2D = $EnemyTexture
 
 var t: float = 0.0
+var attack_power: int = 100
 
 func _ready():
 	anim.play("idle")
@@ -32,3 +33,7 @@ func _on_unit_died() -> void:
 func take_damage(damage):
 	$HealthComponent.take_damage(damage)
 	
+func attack(body: Node2D) -> void:
+	print ("Player Damaged")
+	if body is Player:
+		body.damage(attack_power)

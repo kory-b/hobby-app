@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn4hnr8bbq5t0"]
+
+[ext_resource type="Script" uid="uid://djip16umi6qh0" path="res://game/ui/summary_screen/summary_screen.gd" id="1_vla81"]
+
+[node name="SummaryScreen" type="Node2D"]
+script = ExtResource("1_vla81")
+
+[node name="SummaryScreen" type="Label" parent="."]
+offset_left = 244.0
+offset_top = 40.0
+offset_right = 375.0
+offset_bottom = 63.0
+text = "Summary Screen"
+
+[node name="ShardsLabel" type="Label" parent="."]
+offset_left = 246.0
+offset_top = 82.0
+offset_right = 377.0
+offset_bottom = 105.0
+text = "You Have 0 Shards"
+
+[node name="Return To Town" type="Button" parent="."]
+offset_left = 247.0
+offset_top = 129.0
+offset_right = 375.0
+offset_bottom = 160.0
+text = "Return to Town"
+
+[node name="Main Menu" type="Button" parent="."]
+offset_left = 259.0
+offset_top = 171.0
+offset_right = 355.0
+offset_bottom = 202.0
+text = "Main Menu"
+
+[connection signal="pressed" from="Return To Town" to="." method="enter_town"]
+[connection signal="pressed" from="Main Menu" to="." method="main_menu"]
