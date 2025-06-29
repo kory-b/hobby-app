@@ -396,6 +396,7 @@ radius = 5.0
 height = 20.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_g2els")
 
 [node name="PlaceHolder" type="AnimatedSprite2D" parent="."]

@@ -1,8 +1,13 @@
 # DungeonGenerator.gd
 extends Node2D
 
-# --- EXPORTED VARIABLES ---
-# These variables can be configured from the Inspector in the Godot editor.
+# How many enemies per room (you can tweak these in the Inspector)
+@export var min_enemies_per_room: int = 1
+@export var max_enemies_per_room: int = 3
+@export var enemy_scene: PackedScene = preload("res://scenes/game/Enemy.tscn")
+
+# A node to hold all spawned enemies
+@onready var enemies_root: Node2D = get_node("Enemies")
 
 @export var world_size: Vector2i = Vector2i(500, 500) # The size of the dungeon in tiles.
 @export var min_rooms: int = 5 # The minimum number of rooms to generate.
@@ -10,7 +15,8 @@ extends Node2D
 @export var min_room_size: int = 25 # The minimum size (width and height) of a room.
 @export var max_room_size: int = 30 # The maximum size (width and height) of a room.
 @export var hallway_width: int = 5 # The width of the hallways.
-@export var seed: int = 0 # The seed for the random number generator. A value of 0 means a random seed.
+@export var max_hall_length: int = 40  # max tiles per straight run
+@export var dungeon_seed: int = 0 # The seed for the random number generator. A value of 0 means a random seed.
 
 # --- TILEMAP CONFIGURATION ---
 @onready var floor_layer: TileMapLayer = $"Background/FloorLayer" # Reference to the Floor TileMapLayer.
@@ -29,6 +35,11 @@ var _rooms = [] # An array to store the generated rooms (as Rect2i).
 var _player_spawn_pos: Vector2i
 var _exit_pos: Vector2i
 
+var fireball_scene = preload("res://scenes/game/fireball.tscn")
+
+var attack_cooldown = .5
+var last_attack = 0
+
 # --- GODOT LIFECYCLE METHODS ---
 
 func _ready():
@@ -37,6 +48,7 @@ func _ready():
 	This is where we kick off the dungeon generation process.
 	"""
 	generate_dungeon()
+	spawn_enemies()
 	print("Rooms:", _rooms)
 	print("Player Position: ", $Player.position)
 	#$Player.position = _player_spawn_pos
@@ -52,10 +64,10 @@ func generate_dungeon():
 	The main function that orchestrates the entire dungeon generation process.
 	"""
 	# 1. Initialize the Random Number Generator
-	if seed == 0:
+	if dungeon_seed == 0:
 		_rng.randomize() # Use a random seed if seed is 0.
 	else:
-		_rng.seed = seed # Use the specified seed for deterministic generation.
+		_rng.seed = dungeon_seed # Use the specified seed for deterministic generation.
 
 	# 2. Clear previous generation data
 	_rooms.clear()
@@ -108,25 +120,102 @@ func _carve_floor_rect(rect: Rect2i):
 	"""
 	for x in range(rect.position.x, rect.position.x + rect.size.x):
 		for y in range(rect.position.y, rect.position.y + rect.size.y):
-			setFloorTile(Vector2i(x, y))
+			set_floor_tile(Vector2i(x, y))
 
 func _carve_hallway(start: Vector2i, end: Vector2i):
-	"""
-	Carves a wide L-shaped hallway between two points.
-	It carves a horizontal rectangle and a vertical rectangle.
-	"""
-	var half_width_floor = floor(hallway_width / 2.0)
-	
-	# Horizontal segment
-	var h_rect_pos = Vector2i(min(start.x, end.x), start.y - half_width_floor)
-	var h_rect_size = Vector2i(abs(start.x - end.x) + 1, hallway_width)
-	_carve_floor_rect(Rect2i(h_rect_pos, h_rect_size))
-	
-	# Vertical segment
-	var v_rect_pos = Vector2i(end.x - half_width_floor, min(start.y, end.y))
-	var v_rect_size = Vector2i(hallway_width, abs(start.y - end.y) + 1)
-	_carve_floor_rect(Rect2i(v_rect_pos, v_rect_size))
+	var half_w = floor(hallway_width / 2.0)
+	var current = start
 
-func setFloorTile(position: Vector2i):
-	wall_layer.erase_cell(position)
-	floor_layer.set_cell(position, FLOOR_SOURCE_ID, FLOOR_ATLAS_COORDS)
+	#— carve horizontal in chunks until we reach end.x —
+	while current.x != end.x:
+		# step toward end.x but no farther than max_hall_length
+		var delta_x = end.x - current.x
+		var step_x = clamp(delta_x, -max_hall_length, max_hall_length)
+		var next_x = current.x + step_x
+
+		# build a Rect2i for that segment
+		var x0 = min(current.x, next_x)
+		var length_x = abs(step_x) + 1
+		_carve_floor_rect(Rect2i(
+			Vector2i(x0, current.y - half_w),
+			Vector2i(length_x, hallway_width)
+		))
+
+		current.x = next_x
+
+	#— carve vertical in chunks until we reach end.y —
+	while current.y != end.y:
+		var delta_y = end.y - current.y
+		var step_y = clamp(delta_y, -max_hall_length, max_hall_length)
+		var next_y = current.y + step_y
+
+		var y0 = min(current.y, next_y)
+		var length_y = abs(step_y) + 1
+		_carve_floor_rect(Rect2i(
+			Vector2i(current.x - half_w, y0),
+			Vector2i(hallway_width, length_y)
+		))
+
+		current.y = next_y
+
+func spawn_enemies():
+	var tile_size = floor_layer.tile_set.tile_size
+	for room in _rooms:
+		var count = _rng.randi_range(min_enemies_per_room, max_enemies_per_room)
+		for i in range(count):
+			var cell = Vector2i(
+				_rng.randi_range(room.position.x, room.position.x + room.size.x - 1),
+				_rng.randi_range(room.position.y, room.position.y + room.size.y - 1)
+			)
+			if floor_layer.get_cell_source_id(cell) != FLOOR_SOURCE_ID:
+				continue
+
+			var enemy = enemy_scene.instantiate() as Enemy
+
+			var local_pos = floor_layer.map_to_local(cell)
+			var world_pos = floor_layer.to_global(local_pos) + tile_size * 0.5
+
+			enemy.global_position = world_pos
+			enemies_root.add_child(enemy)
+
+
+
+func set_floor_tile(cell_pos: Vector2i):
+	wall_layer.erase_cell(cell_pos)
+	floor_layer.set_cell(cell_pos, FLOOR_SOURCE_ID, FLOOR_ATLAS_COORDS)
+
+func _unhandled_input(event):
+	# Check if the input event is a left mouse button press.
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+		# Get the direction from the player to the mouse.
+		print("Mouse Event: ", event)
+		var direction = get_global_mouse_position() - player.position
+		
+		# We normalize the direction to get a unit vector.
+		direction = direction.normalized()
+		
+		# Spawn the fireball and pass the direction to it.
+		spawn_fireball(direction)
+
+
+
+func spawn_fireball(direction):
+	var now = Time.get_unix_time_from_system()
+	print(now)
+	
+	if now - last_attack < attack_cooldown:
+		return;
+	
+	# Create an instance of the fireball scene.
+	var fireball = fireball_scene.instantiate()
+	
+	# Set the fireball's initial position and rotation.
+	fireball.position = $Player.position
+	fireball.rotation = direction.angle()
+	
+	# Set the fireball's direction.
+	fireball.direction = direction
+	
+	# Add the fireball to the scene tree.
+	get_parent().add_child(fireball)
+	last_attack = now;
