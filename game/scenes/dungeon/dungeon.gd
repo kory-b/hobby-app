@@ -41,3 +41,10 @@ func _unhandled_input(event):
 		
 		# Spawn the fireball and pass the direction to it.
 		$FireballManager.spawn_fireball(player.position, direction)
+
+
+
+
+func pause() -> void:
+	$"/root/SceneManager".change_scene("res://game/ui/pause_screen/pause_screen.tscn")
+	pass # Replace with function body.

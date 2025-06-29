@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://yn7b82lqon7w"]
+
+[ext_resource type="Script" uid="uid://druv26ktfbtpo" path="res://game/ui/pause_screen/pause_screen.gd" id="1_f2q6y"]
+
+[node name="PauseScreen" type="Node"]
+script = ExtResource("1_f2q6y")
+
+[node name="ResumeButton" type="Button" parent="."]
+offset_left = 273.0
+offset_top = 118.0
+offset_right = 343.0
+offset_bottom = 149.0
+text = "Resume
+"
+
+[node name="PausedLabel" type="Label" parent="."]
+offset_left = 276.0
+offset_top = 65.0
+offset_right = 333.0
+offset_bottom = 88.0
+text = "Paused"
+
+[node name="MainMenuButton" type="Button" parent="."]
+offset_left = 263.0
+offset_top = 178.0
+offset_right = 359.0
+offset_bottom = 209.0
+text = "Main Menu"
+
+[connection signal="pressed" from="ResumeButton" to="." method="resume"]
+[connection signal="pressed" from="MainMenuButton" to="." method="main_menu"]

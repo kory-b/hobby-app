@@ -39,10 +39,3 @@ func _physics_process(_delta):
 			link.play("face_%s" % last_direction)
 
 	move_and_slide()
-
-	# Print the size of the viewport.
-	#print("Viewport Resolution is: ", get_viewport().get_visible_rect().size)
-	#pass
-
-func gotoMainMenu() -> void:
-	$"/root/SceneManager".change_scene("res://scenes/main.tscn")

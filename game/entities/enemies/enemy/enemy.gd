@@ -27,6 +27,7 @@ func _physics_process(delta):
 
 func _on_unit_died() -> void:
 	print("Enemy Died!")
+	State.shards += 10
 	queue_free()
 	
 func take_damage(damage):
