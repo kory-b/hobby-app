@@ -1,9 +1,7 @@
-extends Node
-class_name State
+class_name State extends Node
 
-@export var move_speed: float = 400
 
-@export var parent: Player
+@export var parent: Node
 
 func enter() -> void:
 	pass

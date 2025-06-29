@@ -1,22 +1,23 @@
-extends Node
+class_name StateMachine  extends Node
+
 
 
 @export var starting_state: State
 
 var current_state: State
 
-func init(parent: Player) -> void:
-	
+func init(parent) -> void:
 	for child in get_children():
-		print(child, parent, child.parent)
+		print(parent, child)
 		child.parent = parent 
 	change_state(starting_state)
 	
 func change_state(new_state: State) -> void:
 	if current_state:
 		current_state.exit()
+	print(current_state, new_state)
 	current_state = new_state
-	new_state.enter()
+	current_state.enter()
 	
 func process_physics(delta:float) -> void:
 	var new_state = current_state.process_physics(delta)

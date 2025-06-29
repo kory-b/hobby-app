@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://3wdbrmewwae1"]
+[gd_scene load_steps=48 format=3 uid="uid://3wdbrmewwae1"]
 
 [ext_resource type="Script" uid="uid://cd3rhv8t86dxt" path="res://game/entities/enemies/enemy/enemy.gd" id="1_cpwir"]
 [ext_resource type="Texture2D" uid="uid://d2wfwo2x7tqnm" path="res://assets/tiles/Player_placeholder.png" id="2_mmhgt"]
@@ -38,10 +38,16 @@
 [ext_resource type="Texture2D" uid="uid://dpnkukryw82wb" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_016.png" id="36_j1h8j"]
 [ext_resource type="Texture2D" uid="uid://6fv7102bkwic" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_017.png" id="37_wjcik"]
 [ext_resource type="Script" uid="uid://cmgcqf3lyxahe" path="res://game/component/health_component.gd" id="38_n8nf3"]
+[ext_resource type="Script" uid="uid://blionrlb4f6lq" path="res://common/state_machine/state_machine.gd" id="39_mmhgt"]
+[ext_resource type="Script" uid="uid://bxepu0oek8owd" path="res://game/entities/enemies/enemy/states/idle.gd" id="40_516tk"]
+[ext_resource type="Script" uid="uid://decf0twq6gaxx" path="res://game/entities/enemies/enemy/states/attack.gd" id="41_4i4lh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lvulp"]
+radius = 9.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
-radius = 5.0
-height = 16.0
+radius = 3.0
+height = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nybob"]
 atlas = ExtResource("2_mmhgt")
@@ -176,20 +182,22 @@ animations = [{
 "speed": 60.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4i4lh"]
+radius = 159.0
+
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_cpwir")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -2)
-shape = SubResource("CapsuleShape2D_g2els")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 visible = false
+shape = SubResource("CircleShape2D_lvulp")
+
+[node name="PhysicsBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_g2els")
 
@@ -199,6 +207,7 @@ position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_68xwl")
 
 [node name="EnemyTexture" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
 scale = Vector2(0.08, 0.08)
 sprite_frames = SubResource("SpriteFrames_2gdjj")
 animation = &"fly"
@@ -209,5 +218,23 @@ animation = &"fly"
 script = ExtResource("38_n8nf3")
 metadata/_custom_type_script = "uid://cmgcqf3lyxahe"
 
-[connection signal="body_entered" from="Area2D" to="." method="attack"]
+[node name="Aggression Area" type="Area2D" parent="."]
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Aggression Area"]
+visible = false
+shape = SubResource("CircleShape2D_4i4lh")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("39_mmhgt")
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("40_516tk")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("41_4i4lh")
+
+[connection signal="body_entered" from="HurtBox" to="." method="attack"]
 [connection signal="died" from="HealthComponent" to="." method="_on_unit_died"]
+[connection signal="body_entered" from="Aggression Area" to="." method="aggression"]

@@ -1,10 +1,3 @@
-# SceneManager.gd
-# This script should be set up as an Autoload (Singleton) in your project settings.
-# To do this:
-# 1. Go to Project -> Project Settings -> Autoload.
-# 2. Click the 'Add' button (folder icon), navigate to this script (SceneManager.gd), and select it.
-# 3. Ensure 'Enable' is checked. The Node Name will default to "SceneManager".
-
 extends Node
 
 # Stores a reference to the currently active scene.
