@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cp3ccf8necmrw"]
 
-[ext_resource type="PackedScene" uid="uid://b1gqkf0bigllg" path="res://game/scenes/game/dungeon.tscn" id="1_0dew4"]
+[ext_resource type="PackedScene" uid="uid://b1gqkf0bigllg" path="res://game/scenes/dungeon/dungeon.tscn" id="1_0dew4"]
 
 [node name="HomeBase" type="Node2D"]
 
