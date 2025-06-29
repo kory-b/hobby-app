@@ -152,3 +152,6 @@ func set_floor_tile(cell_pos: Vector2i):
 	
 func get_rooms():
 	return _rooms
+	
+func get_player_spawn():
+	return _player_spawn_pos

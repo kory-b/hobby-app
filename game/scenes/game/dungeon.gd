@@ -18,26 +18,16 @@ extends Node2D
 @export var dungeon_seed: int = 0 # The seed for the random number generator. A value of 0 means a random seed.
 
 # --- TILEMAP CONFIGURATION ---
-@onready var floor_layer: TileMapLayer = $"Background/FloorLayer" # Reference to the Floor TileMapLayer.
-@onready var wall_layer: TileMapLayer = $Background/WallLayer # Reference to the Wall TileMapLayer.
 @onready var player: CharacterBody2D = $Player
+@onready var dungeon_manager: DungeonManager = $DungeonManager
 
 # --- PRIVATE VARIABLES ---
-var _rng = RandomNumberGenerator.new() # The random number generator instance.
-var _rooms = [] # An array to store the generated rooms (as Rect2i).
 var _player_spawn_pos: Vector2i
 var _exit_pos: Vector2i
 
 # --- GODOT LIFECYCLE METHODS ---
-
 func _ready():
-	print("Rooms:", _rooms)
-	print("Player Position: ", $Player.position)
-	#$Player.position = _player_spawn_pos
-	if _rooms.size() > 0:
-		var tile_size = floor_layer.tile_set.tile_size
-		player.position = floor_layer.map_to_local(_player_spawn_pos) + tile_size / 2.0
-	print("Player Position: ", $Player.position)
+	pass
 
 func _unhandled_input(event):
 	# Check if the input event is a left mouse button press.
