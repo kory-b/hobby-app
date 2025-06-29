@@ -183,7 +183,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4i4lh"]
-radius = 159.0
+radius = 100.0
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -222,7 +222,6 @@ metadata/_custom_type_script = "uid://cmgcqf3lyxahe"
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Aggression Area"]
-visible = false
 shape = SubResource("CircleShape2D_4i4lh")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
