@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1gqkf0bigllg"]
+[gd_scene load_steps=11 format=3 uid="uid://b1gqkf0bigllg"]
 
-[ext_resource type="Script" uid="uid://igp70eo08xga" path="res://game/scenes/game/dungeon_generator.gd" id="1_vniqc"]
+[ext_resource type="Script" uid="uid://x1d4c5ngb1lr" path="res://game/scenes/game/dungeon.gd" id="1_83yuv"]
+[ext_resource type="Script" uid="uid://igp70eo08xga" path="res://game/scenes/game/dungeon_manager.gd" id="1_vniqc"]
 [ext_resource type="PackedScene" uid="uid://bjuonfevw8gma" path="res://game/entities/player/player.tscn" id="2_y60a4"]
 [ext_resource type="Texture2D" uid="uid://bq2qwlk1hmt53" path="res://assets/tiles/dungeon_tiles/floor_tiles.png" id="3_tm2xg"]
 [ext_resource type="Texture2D" uid="uid://5jm54sej1gp6" path="res://assets/tiles/stone-wall-tile.png" id="4_7ut51"]
+[ext_resource type="Script" uid="uid://b30sn3tyxwmak" path="res://game/scenes/game/enemy_manager.gd" id="6_i6pqt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epsnw"]
 texture = ExtResource("3_tm2xg")
@@ -25,7 +27,7 @@ physics_layer_0/collision_layer = 2
 sources/3 = SubResource("TileSetAtlasSource_sval7")
 
 [node name="Dungeon" type="Node2D"]
-script = ExtResource("1_vniqc")
+script = ExtResource("1_83yuv")
 
 [node name="Player" parent="." instance=ExtResource("2_y60a4")]
 z_index = 10
@@ -40,15 +42,18 @@ offset_bottom = -143.0
 text = "PAUSE
 "
 
-[node name="Background" type="Node" parent="."]
+[node name="DungeonManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("1_vniqc")
+player = NodePath("../Player")
 
-[node name="FloorLayer" type="TileMapLayer" parent="Background"]
+[node name="FloorLayer" type="TileMapLayer" parent="DungeonManager"]
 tile_set = SubResource("TileSet_epsnw")
 
-[node name="WallLayer" type="TileMapLayer" parent="Background"]
+[node name="WallLayer" type="TileMapLayer" parent="DungeonManager"]
 tile_set = SubResource("TileSet_qcasg")
 
-[node name="Enemies" type="Node2D" parent="."]
-z_index = 10
+[node name="EnemyManager" type="Node" parent="." node_paths=PackedStringArray("dungeon_manager")]
+script = ExtResource("6_i6pqt")
+dungeon_manager = NodePath("../DungeonManager")
 
 [connection signal="pressed" from="Player/MainMenu" to="Player" method="gotoMainMenu"]

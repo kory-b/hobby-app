@@ -6,7 +6,7 @@ var speed = 100
 var direction = Vector2.ZERO
 var rotation_speed = 10
 
-var damage = 50
+var damage: int = 50
 
 func _ready():
 	$GPUParticles2D.emitting = true
