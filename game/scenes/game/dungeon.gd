@@ -28,15 +28,9 @@ var _rooms = [] # An array to store the generated rooms (as Rect2i).
 var _player_spawn_pos: Vector2i
 var _exit_pos: Vector2i
 
-var fireball_scene = preload("res://game/entities/fireball/fireball.tscn")
-
-var attack_cooldown = .5
-var last_attack = 0
-
 # --- GODOT LIFECYCLE METHODS ---
 
 func _ready():
-	spawn_enemies()
 	print("Rooms:", _rooms)
 	print("Player Position: ", $Player.position)
 	#$Player.position = _player_spawn_pos
@@ -44,28 +38,6 @@ func _ready():
 		var tile_size = floor_layer.tile_set.tile_size
 		player.position = floor_layer.map_to_local(_player_spawn_pos) + tile_size / 2.0
 	print("Player Position: ", $Player.position)
-
-func spawn_enemies():
-	pass
-	#var tile_size = floor_layer.tile_set.tile_size
-	#for room in _rooms:
-		#var count = _rng.randi_range(min_enemies_per_room, max_enemies_per_room)
-		#for i in range(count):
-			#var cell = Vector2i(
-				#_rng.randi_range(room.position.x, room.position.x + room.size.x - 1),
-				#_rng.randi_range(room.position.y, room.position.y + room.size.y - 1)
-			#)
-			#if floor_layer.get_cell_source_id(cell) != FLOOR_SOURCE_ID:
-				#continue
-#
-			#var enemy = enemy_scene.instantiate() as Enemy
-#
-			#var local_pos = floor_layer.map_to_local(cell)
-			#var world_pos = floor_layer.to_global(local_pos) + tile_size * 0.5
-#
-			#enemy.global_position = world_pos
-			#enemies_root.add_child(enemy)
-
 
 func _unhandled_input(event):
 	# Check if the input event is a left mouse button press.
@@ -78,25 +50,4 @@ func _unhandled_input(event):
 		direction = direction.normalized()
 		
 		# Spawn the fireball and pass the direction to it.
-		spawn_fireball(direction)
-
-func spawn_fireball(direction):
-	var now = Time.get_unix_time_from_system()
-	print(now)
-	
-	if now - last_attack < attack_cooldown:
-		return;
-	
-	# Create an instance of the fireball scene.
-	var fireball = fireball_scene.instantiate()
-	
-	# Set the fireball's initial position and rotation.
-	fireball.position = $Player.position
-	fireball.rotation = direction.angle()
-	
-	# Set the fireball's direction.
-	fireball.direction = direction
-	
-	# Add the fireball to the scene tree.
-	get_parent().add_child(fireball)
-	last_attack = now;
+		$FireballManager.spawn_fireball(player.position, direction)
