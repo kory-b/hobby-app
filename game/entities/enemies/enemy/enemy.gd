@@ -9,6 +9,7 @@ extends CharacterBody2D
 
 @onready var aggression_area: Area2D = $"Aggression Area"
 
+@export var item_manager: ItemManager
 
 var attack_power: int = 100
 
@@ -34,6 +35,7 @@ func attack(body: Node2D) -> void:
 func _on_unit_died() -> void:
 	print("Enemy Died!")
 	GlobalState.shards += 10
+	item_manager.spawn_item(position)
 	queue_free()
 	
 func take_damage(damage):
