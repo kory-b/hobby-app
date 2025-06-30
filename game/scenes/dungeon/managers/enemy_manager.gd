@@ -8,6 +8,8 @@ class_name EnemyManager
 
 @export var dungeon_manager: DungeonManager
 
+@export var item_manager: ItemManager
+
 @export var enemy_scenes: Array[PackedScene]
 
 ## The base number of enemies to spawn on floor 1.
@@ -36,5 +38,6 @@ func spawn_enemies():
 			var world_pos = dungeon_manager.floor_layer.to_global(local_pos) + tile_size * 0.5
 
 			enemy.global_position = world_pos
+			enemy.item_manager = item_manager
 			self.add_child(enemy)
 	

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxolplnqqvryx"]
+
+[ext_resource type="Texture2D" uid="uid://c7p5m8airsdfl" path="res://game/entities/potion/tile_0115.png" id="1_adi5k"]
+[ext_resource type="Script" uid="uid://bbwe1p55jtyim" path="res://game/entities/potion/potion.gd" id="1_kj478"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_adi5k"]
+radius = 7.0
+
+[node name="Potion" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_kj478")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_adi5k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_adi5k")
+
+[connection signal="body_entered" from="." to="." method="picked_up"]

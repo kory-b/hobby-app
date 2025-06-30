@@ -16,16 +16,22 @@ func _ready():
 	# Initialize current health when the node enters the scene tree.
 	current_health = max_health
 
+func _set_health(health_amount: int):
+	current_health = clamp(current_health + health_amount, 0, 100)
+	print("[Health]: Health Changed: ", current_health)
+	health_changed.emit(current_health)
+	if current_health == 0:
+		died.emit()
+		
 
 ## Reduces current health by the damage amount.
 func take_damage(damage_amount: float):
-	# [cite_start]In the future, we can factor in the 'Defense' stat here. [cite: 63]
-	current_health -= damage_amount
+	print("[Health]: Taking_damage: ", damage_amount)
+	_set_health(-damage_amount)
+
+## Reduces current health by the damage amount.
+func heal(heal_amount: float):
+	print("[Health]: Healing: ", heal_amount)
+	_set_health(heal_amount)
 	
-	# Ensure health doesn't go below 0.
-	current_health = max(current_health, 0)
 	
-	health_changed.emit(current_health)
-	
-	if current_health == 0:
-		died.emit()
