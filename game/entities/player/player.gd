@@ -24,6 +24,11 @@ func damage(damage: int) -> void:
 	print("damaged")
 	health_component.take_damage(damage)
 
+func heal(health: int) -> void:
+	print("healed")
+	health_component.heal(health)
+
+
 
 func died() -> void:
 	SceneManager.change_scene("res://game/ui/summary_screen/summary_screen.tscn")
