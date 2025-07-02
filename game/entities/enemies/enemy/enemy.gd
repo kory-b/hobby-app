@@ -2,16 +2,12 @@ class_name Enemy
 extends CharacterBody2D
 
 @onready var state_machine: Node = $StateMachine
+@onready var damage_component: DamageComponent = $DamageComponent
 
 @export var speed: float = 80.0
-
 @onready var anim: AnimatedSprite2D = $EnemyTexture
-
 @onready var aggression_area: Area2D = $"Aggression Area"
-
 @export var item_manager: ItemManager
-
-var attack_power: int = 100
 
 func _ready():
 	anim.play("idle")
@@ -30,7 +26,7 @@ func _process(delta: float) -> void:
 func attack(body: Node2D) -> void:
 	print ("Player Damaged")
 	if body is Player:
-		body.damage(attack_power)
+		body.damage(damage_component.damage)
 
 func _on_unit_died() -> void:
 	print("Enemy Died!")
