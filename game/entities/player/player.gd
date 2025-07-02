@@ -3,12 +3,14 @@ class_name Player
 
 @onready var state_machine: Node = $StateMachine
 @onready var health_component: HealthComponent = $HealthComponent
-
+@onready var progress_bar: ProgressBar = $ProgressBar
 
 var placeholder := true
 
 func _ready() -> void:
-	health_component.max_health = 100
+	health_component.init_health(1000)
+	progress_bar.init_value(1000)
+
 	state_machine.init(self)
 
 func _unhandled_input(event: InputEvent) -> void:

@@ -11,6 +11,7 @@ class_name DungeonManager
 @export var dungeon_seed: int = 0 # The seed for the random number generator. A value of 0 means a random seed.
 
 @export var player: CharacterBody2D
+@export var ladder: Node2D
 
 # --- TILEMAP CONFIGURATION ---
 @onready var floor_layer: TileMapLayer = $"FloorLayer" # Reference to the Floor TileMapLayer.
@@ -32,6 +33,10 @@ var _exit_pos: Vector2i
 # --- GODOT LIFECYCLE METHODS ---
 
 func _ready():
+	init_dungeon()
+
+# --- CORE GENERATION LOGIC ---
+func init_dungeon():
 	"""
 	Called when the node enters the scene tree for the first time.
 	This is where we kick off the dungeon generation process.
@@ -39,13 +44,12 @@ func _ready():
 	generate_dungeon()
 	print("Rooms:", _rooms)
 	print("Player Position: ", player.position)
-	#player.position = _player_spawn_pos
+	player.position = _player_spawn_pos
 	if _rooms.size() > 0:
 		var tile_size = floor_layer.tile_set.tile_size
+		ladder.position = floor_layer.map_to_local(_player_spawn_pos) + Vector2(tile_size.x * 3, 0.0)
 		player.position = floor_layer.map_to_local(_player_spawn_pos) + tile_size / 2.0
 	print("Player Position: ", player.position)
-
-# --- CORE GENERATION LOGIC ---
 
 func generate_dungeon():
 	"""

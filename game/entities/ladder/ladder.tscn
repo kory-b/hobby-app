@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3dpf8m4ws27m"]
+
+[ext_resource type="Texture2D" uid="uid://bu1o4yw8v2kk4" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0039.png" id="1_m1eyh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m1eyh"]
+size = Vector2(16, 16)
+
+[node name="Ladder" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_m1eyh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_m1eyh")

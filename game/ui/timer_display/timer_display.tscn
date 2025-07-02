@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvxqy8r7n8kcj"]
+
+[ext_resource type="Script" uid="uid://d3yiy3vbx3rhf" path="res://game/ui/timer_display/timer_display.gd" id="1_0k8vx"]
+
+[node name="TimerDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -696.0
+offset_top = -21.0
+offset_right = -576.0
+offset_bottom = 19.0
+grow_horizontal = 0
+script = ExtResource("1_0k8vx")
+
+[node name="TimerLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Time: 20:00"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b1gqkf0bigllg"]
+[gd_scene load_steps=16 format=3 uid="uid://b1gqkf0bigllg"]
 
 [ext_resource type="Script" uid="uid://bkpthlysrcq4u" path="res://game/scenes/dungeon/managers/item_manager.gd" id="1_8kubn"]
 [ext_resource type="Script" uid="uid://x1d4c5ngb1lr" path="res://game/scenes/dungeon/dungeon.gd" id="1_83yuv"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://5jm54sej1gp6" path="res://assets/tiles/stone-wall-tile.png" id="4_7ut51"]
 [ext_resource type="Script" uid="uid://b30sn3tyxwmak" path="res://game/scenes/dungeon/managers/enemy_manager.gd" id="6_i6pqt"]
 [ext_resource type="Script" uid="uid://vxn6rkgjkimw" path="res://game/scenes/dungeon/managers/fireball_manager.gd" id="7_ny0xj"]
+[ext_resource type="PackedScene" uid="uid://b3dpf8m4ws27m" path="res://game/entities/ladder/ladder.tscn" id="10_iqd7g"]
+[ext_resource type="PackedScene" uid="uid://bvxqy8r7n8kcj" path="res://game/ui/timer_display/timer_display.tscn" id="11_timer"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epsnw"]
 texture = ExtResource("3_tm2xg")
@@ -31,6 +33,7 @@ sources/3 = SubResource("TileSetAtlasSource_sval7")
 
 [node name="Dungeon" type="Node2D"]
 script = ExtResource("1_83yuv")
+floors = 1
 
 [node name="Player" parent="." instance=ExtResource("2_y60a4")]
 z_index = 10
@@ -61,11 +64,21 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Pause"
 
+[node name="TimerDisplay" parent="Player/UI" node_paths=PackedStringArray("dungeon_scene") instance=ExtResource("11_timer")]
+z_index = 50
+layout_mode = 1
+offset_left = 453.0
+offset_top = 3.0
+offset_right = 573.0
+offset_bottom = 43.0
+dungeon_scene = NodePath("../../..")
+
 [node name="Potion" parent="Player" instance=ExtResource("3_8kubn")]
 
-[node name="DungeonManager" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="DungeonManager" type="Node" parent="." node_paths=PackedStringArray("player", "ladder")]
 script = ExtResource("1_vniqc")
 player = NodePath("../Player")
+ladder = NodePath("../Ladder")
 
 [node name="FloorLayer" type="TileMapLayer" parent="DungeonManager"]
 tile_set = SubResource("TileSet_epsnw")
@@ -84,4 +97,10 @@ script = ExtResource("7_ny0xj")
 [node name="ItemManager" type="Node" parent="."]
 script = ExtResource("1_8kubn")
 
+[node name="Ladder" parent="." instance=ExtResource("10_iqd7g")]
+z_index = 5
+
+[node name="GameTimer" type="Timer" parent="."]
+
 [connection signal="pressed" from="Player/UI/Button" to="." method="pause"]
+[connection signal="body_entered" from="Ladder" to="." method="leave_dungeon_floor"]

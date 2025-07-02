@@ -4,10 +4,13 @@ extends ProgressBar
 
 
 func _ready() -> void:
+	init_value(health_component.max_health)
+
+func init_value(value: int) -> void:
 	min_value = 0
-	max_value = health_component.max_health
-	value = health_component.current_health
-	
+	value = value
+	max_value = value
 
 func _on_health_component_health_changed(new_health: Variant) -> void:
-	value = health_component.current_health
+	print("Updating Health Component: ", new_health)
+	value = new_health

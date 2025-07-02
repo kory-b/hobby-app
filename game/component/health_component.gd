@@ -13,11 +13,16 @@ var current_health: float
 
 
 func _ready():
-	# Initialize current health when the node enters the scene tree.
-	current_health = max_health
+	init_health(max_health)
+	
+
+func init_health(amount:int):
+	max_health = amount
+	current_health = amount
+	print("[Health]: Init Health: ", current_health)
 
 func _set_health(health_amount: int):
-	current_health = clamp(current_health + health_amount, 0, 100)
+	current_health = clamp(current_health + health_amount, 0, max_health)
 	print("[Health]: Health Changed: ", current_health)
 	health_changed.emit(current_health)
 	if current_health == 0:

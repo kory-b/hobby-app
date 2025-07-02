@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://r1aylnm682"]
+
+[ext_resource type="Script" uid="uid://b12atq7rt387o" path="res://game/ui/victory_screen/victory_scene.gd" id="1_m2cr5"]
+
+[node name="VictoryScene" type="Node"]
+script = ExtResource("1_m2cr5")
+
+[node name="ReturnToTownButton" type="Button" parent="."]
+offset_left = 273.0
+offset_top = 118.0
+offset_right = 343.0
+offset_bottom = 149.0
+text = "Return to Town"
+
+[node name="VictoryLabel" type="Label" parent="."]
+offset_left = 199.0
+offset_top = 30.0
+offset_right = 571.0
+offset_bottom = 105.0
+text = "Congratulations!
+You've Slayed the
+Dungeon!"
+
+[node name="MainMenuButton" type="Button" parent="."]
+offset_left = 263.0
+offset_top = 178.0
+offset_right = 359.0
+offset_bottom = 209.0
+text = "Main Menu"
+
+[connection signal="pressed" from="ReturnToTownButton" to="." method="return_to_town"]
+[connection signal="pressed" from="MainMenuButton" to="." method="main_menu"]
