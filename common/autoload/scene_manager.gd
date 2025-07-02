@@ -3,12 +3,15 @@ extends Node
 # Stores a reference to the currently active scene.
 var current_scene: Node = null
 
+var _target:Node = null
+
 func _ready() -> void:
-	# Get the initial scene that was loaded when the game started.
-	# The root viewport contains the currently active scene.
-	var root = get_tree().root
-	current_scene = root.get_child(root.get_child_count() - 1)
-	print("SceneManager: Initial scene loaded: ", current_scene.name)
+	pass
+
+func init(target: Node, scene_path: String) -> void:
+	_target = target
+	change_scene(scene_path)
+	
 
 # Changes the current scene to a new one specified by its path.
 # @param path: The path to the scene file (e.g., "res://scenes/main_menu.tscn").
@@ -33,9 +36,7 @@ func change_scene(path: String) -> void:
 		push_error("SceneManager: Error instantiating new scene from path: ", path)
 		return
 
-	# Add the new scene as a child of the root viewport.
-	var root = get_tree().root
-	root.add_child(new_scene_instance)
+	_target.add_child(new_scene_instance)
 
 	# If there was a current scene, queue it for deletion.
 	# Using `queue_free()` is crucial for safe deletion, especially for nodes
