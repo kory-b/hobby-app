@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bjuonfevw8gma"]
+[gd_scene load_steps=61 format=3 uid="uid://bjuonfevw8gma"]
 
 [ext_resource type="Script" uid="uid://ck2dan8jct3pi" path="res://game/entities/player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c8a7lmrw745x5" path="res://assets/characters/link-sprite-sheet.png" id="2_qhqgy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dqruoijd822sn" path="res://game/entities/player/states/idle.gd" id="5_oic1i"]
 [ext_resource type="Script" uid="uid://cmmsmv02vlrhy" path="res://game/entities/player/states/move.gd" id="6_v0nmi"]
 [ext_resource type="Script" uid="uid://cmgcqf3lyxahe" path="res://game/component/health_component.gd" id="7_dhej3"]
+[ext_resource type="Script" uid="uid://dxai1d6m77wum" path="res://game/ui/health_bar/health_bar.gd" id="8_kn1iv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nybob"]
 atlas = ExtResource("3_u3rb4")
@@ -399,6 +400,8 @@ animations = [{
 radius = 5.0
 height = 20.0
 
+[sub_resource type="Theme" id="Theme_kn1iv"]
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
 script = ExtResource("1_g2els")
@@ -434,4 +437,15 @@ script = ExtResource("6_v0nmi")
 script = ExtResource("7_dhej3")
 metadata/_custom_type_script = "uid://cmgcqf3lyxahe"
 
+[node name="ProgressBar" type="ProgressBar" parent="." node_paths=PackedStringArray("health_component")]
+offset_left = -33.0
+offset_top = 12.0
+offset_right = 31.0
+offset_bottom = 19.0
+theme = SubResource("Theme_kn1iv")
+show_percentage = false
+script = ExtResource("8_kn1iv")
+health_component = NodePath("../HealthComponent")
+
 [connection signal="died" from="HealthComponent" to="." method="died"]
+[connection signal="health_changed" from="HealthComponent" to="ProgressBar" method="_on_health_component_health_changed"]
