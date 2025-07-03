@@ -18,6 +18,7 @@ extends Node2D
 @onready var player: CharacterBody2D = $Player
 @onready var dungeon_manager: DungeonManager = $DungeonManager
 @onready var enemy_manager: EnemyManager = $EnemyManager
+@onready var item_manager: ItemManager = $ItemManager
 
 # --- PRIVATE VARIABLES ---
 var _player_spawn_pos: Vector2i
@@ -61,7 +62,6 @@ func pause() -> void:
 	$"/root/SceneManager".change_scene("res://game/ui/pause_screen/pause_screen.tscn")
 	pass # Replace with function body.
 
-
 func _on_dungeon_timeout() -> void:
 	# Set timeout flag and calculate time spent (20 minutes = 1200 seconds)
 	GlobalState.dungeon_timed_out = true
@@ -94,3 +94,6 @@ func format_time(seconds: float) -> String:
 	var minutes = int(seconds) / 60
 	var secs = int(seconds) % 60
 	return "%02d:%02d" % [minutes, secs]
+
+func enemy_died(position: Vector2i) -> void:
+	item_manager.spawn_item(position)
