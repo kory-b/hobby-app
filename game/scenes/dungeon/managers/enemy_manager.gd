@@ -23,7 +23,7 @@ func _ready():
 
 func spawn_enemies():
 	var tile_size = dungeon_manager.floor_layer.tile_set.tile_size
-	for room in dungeon_manager.get_rooms():
+	for room in dungeon_manager.rooms:
 		var count = randi_range(min_enemies_per_room, max_enemies_per_room)
 		for i in range(count):
 			var cell = Vector2i(
