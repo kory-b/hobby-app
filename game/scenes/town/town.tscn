@@ -6,10 +6,10 @@
 script = ExtResource("1_hywto")
 
 [node name="Enter Dungeon" type="Button" parent="."]
-offset_left = 267.0
-offset_top = 97.0
-offset_right = 275.0
-offset_bottom = 105.0
+offset_left = 269.0
+offset_top = 166.0
+offset_right = 393.0
+offset_bottom = 197.0
 text = "Enter Dungeon"
 
 [node name="Label" type="Label" parent="."]
@@ -19,5 +19,12 @@ offset_right = 375.0
 offset_bottom = 82.0
 text = "Town Scene
 "
+
+[node name="Shards Label" type="Label" parent="."]
+offset_left = 254.0
+offset_top = 71.0
+offset_right = 397.0
+offset_bottom = 94.0
+text = "You Have 0 Shards"
 
 [connection signal="pressed" from="Enter Dungeon" to="." method="enter_dungeon"]
