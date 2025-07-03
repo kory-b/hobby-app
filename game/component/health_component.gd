@@ -31,8 +31,9 @@ func _set_health(health_amount: int):
 
 ## Reduces current health by the damage amount.
 func take_damage(damage_amount: float):
-	print("[Health]: Taking_damage: ", damage_amount)
-	_set_health(-damage_amount)
+	var val = -max(damage_amount,0)
+	print("[Health]: Taking_damage: ", val)
+	_set_health(val)
 
 ## Reduces current health by the damage amount.
 func heal(heal_amount: float):

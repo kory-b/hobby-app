@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://3wdbrmewwae1"]
+[gd_scene load_steps=50 format=3 uid="uid://3wdbrmewwae1"]
 
 [ext_resource type="Script" uid="uid://cd3rhv8t86dxt" path="res://game/entities/enemies/enemy/enemy.gd" id="1_cpwir"]
 [ext_resource type="Texture2D" uid="uid://d2wfwo2x7tqnm" path="res://assets/tiles/Player_placeholder.png" id="2_mmhgt"]
@@ -42,6 +42,7 @@
 [ext_resource type="Script" uid="uid://bxepu0oek8owd" path="res://game/entities/enemies/enemy/states/idle.gd" id="40_516tk"]
 [ext_resource type="Script" uid="uid://decf0twq6gaxx" path="res://game/entities/enemies/enemy/states/attack.gd" id="41_4i4lh"]
 [ext_resource type="Script" uid="uid://dxai1d6m77wum" path="res://game/ui/health_bar/health_bar.gd" id="42_lvulp"]
+[ext_resource type="Script" uid="uid://bsi1mvdorp47g" path="res://game/component/damage_component.gd" id="43_v1ynf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lvulp"]
 radius = 9.0
@@ -243,6 +244,10 @@ offset_bottom = 12.0
 show_percentage = false
 script = ExtResource("42_lvulp")
 health_component = NodePath("../HealthComponent")
+
+[node name="DamageComponent" type="Node" parent="."]
+script = ExtResource("43_v1ynf")
+metadata/_custom_type_script = "uid://bsi1mvdorp47g"
 
 [connection signal="body_entered" from="HurtBox" to="." method="attack"]
 [connection signal="died" from="HealthComponent" to="." method="_on_unit_died"]

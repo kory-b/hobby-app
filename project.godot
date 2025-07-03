@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SlayTheDungeon"
-run/main_scene="uid://dfh5ewj1hrwsr"
+run/main_scene="uid://blswck6yyfa2m"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 

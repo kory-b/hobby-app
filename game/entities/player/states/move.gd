@@ -3,8 +3,7 @@ class_name Move
 
 @onready var link: AnimatedSprite2D = $"../../LinkTexture"
 @onready var idle: Idle = $"../Idle"
-
-const SPEED := 200.0
+@onready var stat_component: StatComponent = %StatComponent
 
 var last_direction := "down"
 
@@ -39,8 +38,8 @@ func process_physics(delta: float) -> State:
 	)
 	if input_vector == Vector2.ZERO:
 		return idle
-		
-	parent.velocity = input_vector.normalized() * SPEED
+
+	parent.velocity = input_vector.normalized() * stat_component.movement_speed
 
 	if link.is_visible_in_tree():
 	# Animation logic: left/right takes priority

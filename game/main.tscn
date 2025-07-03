@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://blswck6yyfa2m"]
+
+[ext_resource type="Script" uid="uid://cecdduydkp5mg" path="res://game/main.gd" id="1_oa506"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_oa506")
+
+[node name="GameScene" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="UI" type="Node" parent="."]
