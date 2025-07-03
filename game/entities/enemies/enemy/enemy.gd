@@ -39,6 +39,5 @@ func _on_unit_died() -> void:
 func take_damage(damage):
 	$HealthComponent.take_damage(damage)
 
-
 func aggression(body: Node2D) -> void:
 	state_machine.change_state($StateMachine/Attack)

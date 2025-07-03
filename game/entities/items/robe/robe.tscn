@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://t0pwejtpr27w"]
+[gd_scene load_steps=5 format=3 uid="uid://t0pwejtpr27w"]
 
 [ext_resource type="Script" uid="uid://csqhn0s06bxla" path="res://game/entities/items/robe/robe.gd" id="1_mnr34"]
 [ext_resource type="Texture2D" uid="uid://byebjcter8a1r" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0064.png" id="2_rk0a4"]
+[ext_resource type="Script" uid="uid://7c6vlmch5o7p" path="res://game/component/item_component.gd" id="3_rk0a4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_308mh"]
 size = Vector2(15, 15)
@@ -15,5 +16,9 @@ texture = ExtResource("2_rk0a4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_308mh")
+
+[node name="ItemComponent" type="Node" parent="."]
+script = ExtResource("3_rk0a4")
+metadata/_custom_type_script = "uid://7c6vlmch5o7p"
 
 [connection signal="body_entered" from="." to="." method="picked_up"]
