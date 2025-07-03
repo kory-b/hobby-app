@@ -31,7 +31,7 @@ func attack(body: Node2D) -> void:
 func _on_unit_died() -> void:
 	print("Enemy Died!")
 	GlobalState.shards += 10
-	item_manager.spawn_item(position)
+	item_manager.spawn_robe(position)
 	queue_free()
 	
 func take_damage(damage):
