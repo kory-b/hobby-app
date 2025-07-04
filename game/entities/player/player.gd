@@ -2,17 +2,16 @@ extends CharacterBody2D
 class_name Player
 
 @onready var state_machine: Node = $StateMachine
-@onready var health_component: HealthComponent = $HealthComponent
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var current_stats: StatComponent = %CurrentStats
-@onready var base_stats_component: StatComponent = %BaseStats
+@onready var base_stats: StatComponent = %BaseStats
 
 var placeholder := true
 
 
 func _ready() -> void:
-	health_component.init_health(1000)
-	progress_bar.init_value(1000)
+	current_stats.init_health(base_stats.max_health)
+	progress_bar.init_value(base_stats.max_health)
 	state_machine.init(self)
 	
 	GlobalState.item_equipped.connect(item_equipped)
@@ -28,16 +27,19 @@ func _process(delta: float) -> void:
 
 func damage(damage: int) -> void:
 	print("Damage: ", damage, " Defense: ", current_stats.defense)
-	health_component.take_damage(damage - current_stats.defense)
+	current_stats.take_damage(damage - current_stats.defense)
 
 func heal(health: int) -> void:
 	print("healed")
-	health_component.heal(health)
+	current_stats.heal(health)
 
 func died() -> void:
 	SceneManager.change_scene("res://game/ui/summary_screen/summary_screen.tscn")
 	
 func item_equipped() -> void:
 	print("Updating Stats")
+	current_stats = base_stats
 	for item in GlobalState.equipment.values():
-		item.apply(base_stats_component)
+		item.apply(current_stats)
+	current_stats.max_health = current_stats.max_health
+	progress_bar.max_value = current_stats.max_health
