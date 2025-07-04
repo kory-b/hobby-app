@@ -39,7 +39,6 @@ func spawn_enemies():
 			var world_pos = dungeon_manager.floor_layer.to_global(local_pos) + tile_size * 0.5
 
 			enemy.global_position = world_pos
-			enemy.item_manager = item_manager
 			enemy.connect("died", _on_enemy_died)
 			self.add_child(enemy)
 

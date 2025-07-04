@@ -7,7 +7,6 @@ extends CharacterBody2D
 @export var speed: float = 80.0
 @onready var anim: AnimatedSprite2D = $EnemyTexture
 @onready var aggression_area: Area2D = $"Aggression Area"
-@export var item_manager: ItemManager
 
 signal died(enemy:Enemy)
 
