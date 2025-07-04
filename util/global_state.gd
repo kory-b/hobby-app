@@ -15,7 +15,7 @@ var inventory: Array = []
 var equipment: Dictionary = {}
 var max_inventory:int = 20
 
-func pickup_item(item: ItemComponent):
+func pickup_item(item: ItemData):
 	print("pickup")
 	if inventory.size() < max_inventory:
 		if !equipment.has(item.type):
