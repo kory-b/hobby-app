@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7p5m8airsdfl"
-path="res://.godot/imported/tile_0115.png-dec2aca49ab74ed8a7af0b2256a6c7e2.ctex"
+path="res://.godot/imported/tile_0115.png-6854e798b6cc401d1af763c87281cc0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/entities/potion/tile_0115.png"
-dest_files=["res://.godot/imported/tile_0115.png-dec2aca49ab74ed8a7af0b2256a6c7e2.ctex"]
+source_file="res://game/entities/items/potion/tile_0115.png"
+dest_files=["res://.godot/imported/tile_0115.png-6854e798b6cc401d1af763c87281cc0a.ctex"]
 
 [params]
 

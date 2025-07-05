@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var anim: AnimatedSprite2D = $EnemyTexture
 @onready var aggression_area: Area2D = $"Aggression Area"
 
-signal died(enemy:Enemy)
+signal died(enemy: Enemy)
 
 func _ready():
 	anim.play("idle")
@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 
 func attack(body: Node2D) -> void:
-	print ("Player Damaged")
+	print("Player Damaged")
 	if body is Player:
 		body.damage(damage_component.damage)
 
