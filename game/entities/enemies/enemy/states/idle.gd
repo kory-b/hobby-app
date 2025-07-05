@@ -20,7 +20,7 @@ func process_frame(delta: float) -> State:
 	
 func process_physics(delta: float) -> State:
 	t += delta
-	parent.velocity.x = parent.speed * sin(t)    # float back and forth
+	parent.velocity.x = parent.stats.movement_speed * sin(t)    # float back and forth
 	parent.move_and_slide()
 
 	# animation switch

@@ -25,7 +25,7 @@ func process_physics(delta: float) -> State:
 	if !aggression_area.has_overlapping_bodies():
 		return idle
 	var target = aggression_area.get_overlapping_bodies()[0]
-	parent.velocity = (target.position - parent.position).normalized() * parent.speed
+	parent.velocity = (target.position - parent.position).normalized() * parent.stats.movement_speed
 	parent.move_and_slide()
 	
 	if parent.velocity.length() > 0:
