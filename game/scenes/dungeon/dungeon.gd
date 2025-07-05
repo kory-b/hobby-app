@@ -26,6 +26,7 @@ var _exit_pos: Vector2i
 var dungeon_start_time: float
 var dungeon_timer: Timer
 var _current_floor: int = 1
+
 # --- GODOT LIFECYCLE METHODS ---
 func _ready():
 	# Add this scene to the "dungeon" group for easy reference
