@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bjuonfevw8gma"]
+[gd_scene load_steps=61 format=3 uid="uid://bjuonfevw8gma"]
 
 [ext_resource type="Script" uid="uid://ck2dan8jct3pi" path="res://game/entities/player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c8a7lmrw745x5" path="res://assets/characters/link-sprite-sheet.png" id="2_qhqgy"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://dqruoijd822sn" path="res://game/entities/player/states/idle.gd" id="5_oic1i"]
 [ext_resource type="Script" uid="uid://cmmsmv02vlrhy" path="res://game/entities/player/states/move.gd" id="6_v0nmi"]
 [ext_resource type="Script" uid="uid://b5a7yon16mysx" path="res://game/component/stat_component.gd" id="7_5wwt0"]
-[ext_resource type="Script" uid="uid://cmgcqf3lyxahe" path="res://game/component/health_component.gd" id="7_dhej3"]
 [ext_resource type="Script" uid="uid://dxai1d6m77wum" path="res://game/ui/health_bar/health_bar.gd" id="8_kn1iv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nybob"]
@@ -437,21 +436,22 @@ script = ExtResource("6_v0nmi")
 [node name="CurrentStats" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("7_5wwt0")
-defense = 10
 movement_speed = 200
 
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("7_dhej3")
-metadata/_custom_type_script = "uid://cmgcqf3lyxahe"
+[node name="BaseStats" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("7_5wwt0")
+max_health = 100
+metadata/_custom_type_script = "uid://b5a7yon16mysx"
 
-[node name="ProgressBar" type="ProgressBar" parent="." node_paths=PackedStringArray("health_component")]
+[node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = -33.0
 offset_top = 12.0
 offset_right = 31.0
 offset_bottom = 19.0
 theme = SubResource("Theme_kn1iv")
+show_percentage = false
 script = ExtResource("8_kn1iv")
-health_component = NodePath("../HealthComponent")
 
-[connection signal="died" from="HealthComponent" to="." method="died"]
-[connection signal="health_changed" from="HealthComponent" to="ProgressBar" method="_on_health_component_health_changed"]
+[connection signal="died" from="CurrentStats" to="." method="died"]
+[connection signal="health_changed" from="CurrentStats" to="ProgressBar" method="_on_current_stats_health_changed"]

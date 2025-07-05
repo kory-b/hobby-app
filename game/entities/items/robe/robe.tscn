@@ -19,6 +19,8 @@ shape = SubResource("RectangleShape2D_308mh")
 
 [node name="ItemComponent" type="Node" parent="."]
 script = ExtResource("3_rk0a4")
+health = 10
+type = 1
 metadata/_custom_type_script = "uid://7c6vlmch5o7p"
 
 [connection signal="body_entered" from="." to="." method="picked_up"]
