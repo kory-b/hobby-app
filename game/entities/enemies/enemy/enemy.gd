@@ -1,8 +1,4 @@
-class_name Enemy
-extends CharacterBody2D
-
-@export var speed: float = 80.0
-@export var item_manager: ItemManager
+class_name Enemy extends CharacterBody2D
 
 @onready var state_machine: Node = $StateMachine
 @onready var damage_component: DamageComponent = $DamageComponent
@@ -11,7 +7,6 @@ extends CharacterBody2D
 @onready var aggression_area: Area2D = $"Aggression Area"
 
 @onready var health_bar: ProgressBar = $HealthBar
-
 
 signal died(enemy: Enemy)
 

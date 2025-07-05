@@ -8,7 +8,6 @@ class_name Player
 
 var placeholder := true
 
-
 func _ready() -> void:
 	current_stats.init_health(base_stats.max_health)
 	progress_bar.init_value(base_stats.max_health)
