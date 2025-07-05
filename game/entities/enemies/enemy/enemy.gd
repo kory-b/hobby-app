@@ -7,7 +7,8 @@ extends CharacterBody2D
 @export var speed: float = 80.0
 @onready var anim: AnimatedSprite2D = $EnemyTexture
 @onready var aggression_area: Area2D = $"Aggression Area"
-@export var item_manager: ItemManager
+
+signal died(enemy:Enemy)
 
 func _ready():
 	anim.play("idle")
@@ -31,7 +32,7 @@ func attack(body: Node2D) -> void:
 func _on_unit_died() -> void:
 	print("Enemy Died!")
 	GlobalState.shards += 10
-	item_manager.spawn_item(position)
+	died.emit(self)
 	queue_free()
 	
 func take_damage(damage):

@@ -103,4 +103,5 @@ z_index = 5
 [node name="GameTimer" type="Timer" parent="."]
 
 [connection signal="pressed" from="Player/UI/Button" to="." method="pause"]
+[connection signal="enemy_died" from="EnemyManager" to="." method="enemy_died"]
 [connection signal="body_entered" from="Ladder" to="." method="leave_dungeon_floor"]
