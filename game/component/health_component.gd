@@ -28,7 +28,6 @@ func _set_health(health_amount: int):
 	if current_health == 0:
 		died.emit()
 		
-
 ## Reduces current health by the damage amount.
 func take_damage(damage_amount: float):
 	var val = -max(damage_amount,0)
