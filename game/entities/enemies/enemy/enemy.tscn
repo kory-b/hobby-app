@@ -37,7 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://12a2tmjyyqjq" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_015.png" id="35_y5cf5"]
 [ext_resource type="Texture2D" uid="uid://dpnkukryw82wb" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_016.png" id="36_j1h8j"]
 [ext_resource type="Texture2D" uid="uid://6fv7102bkwic" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_017.png" id="37_wjcik"]
-[ext_resource type="Script" uid="uid://cmgcqf3lyxahe" path="res://game/component/health_component.gd" id="38_n8nf3"]
+[ext_resource type="Script" uid="uid://b5a7yon16mysx" path="res://game/component/stat_component.gd" id="38_v1ynf"]
 [ext_resource type="Script" uid="uid://blionrlb4f6lq" path="res://common/state_machine/state_machine.gd" id="39_mmhgt"]
 [ext_resource type="Script" uid="uid://bxepu0oek8owd" path="res://game/entities/enemies/enemy/states/idle.gd" id="40_516tk"]
 [ext_resource type="Script" uid="uid://decf0twq6gaxx" path="res://game/entities/enemies/enemy/states/attack.gd" id="41_4i4lh"]
@@ -216,9 +216,12 @@ animation = &"fly"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("38_n8nf3")
-metadata/_custom_type_script = "uid://cmgcqf3lyxahe"
+[node name="Stats" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("38_v1ynf")
+current_health = 100
+max_health = 100
+metadata/_custom_type_script = "uid://b5a7yon16mysx"
 
 [node name="Aggression Area" type="Area2D" parent="."]
 collision_layer = 5
@@ -236,20 +239,20 @@ script = ExtResource("40_516tk")
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("41_4i4lh")
 
-[node name="HealthBar" type="ProgressBar" parent="." node_paths=PackedStringArray("health_component")]
+[node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -9.0
 offset_top = 8.0
 offset_right = 5.0
 offset_bottom = 12.0
 show_percentage = false
 script = ExtResource("42_lvulp")
-health_component = NodePath("../HealthComponent")
 
 [node name="DamageComponent" type="Node" parent="."]
 script = ExtResource("43_v1ynf")
+damage = 10
 metadata/_custom_type_script = "uid://bsi1mvdorp47g"
 
 [connection signal="body_entered" from="HurtBox" to="." method="attack"]
-[connection signal="died" from="HealthComponent" to="." method="_on_unit_died"]
-[connection signal="health_changed" from="HealthComponent" to="HealthBar" method="_on_health_component_health_changed"]
+[connection signal="died" from="Stats" to="." method="_on_unit_died"]
+[connection signal="health_changed" from="Stats" to="HealthBar" method="_on_current_stats_health_changed"]
 [connection signal="body_entered" from="Aggression Area" to="." method="aggression"]

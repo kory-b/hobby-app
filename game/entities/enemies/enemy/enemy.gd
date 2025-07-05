@@ -1,19 +1,20 @@
-class_name Enemy
-extends CharacterBody2D
+class_name Enemy extends CharacterBody2D
 
 @onready var state_machine: Node = $StateMachine
 @onready var damage_component: DamageComponent = $DamageComponent
-
-@export var speed: float = 80.0
+@onready var stats: StatComponent = %Stats
 @onready var anim: AnimatedSprite2D = $EnemyTexture
 @onready var aggression_area: Area2D = $"Aggression Area"
 
-signal died(enemy:Enemy)
+@onready var health_bar: ProgressBar = $HealthBar
+
+signal died(enemy: Enemy)
 
 func _ready():
 	anim.play("idle")
-	$HealthComponent.max_health = 50
 	state_machine.init(self)
+	stats.init_health(stats.max_health)
+	health_bar.init_value(stats.max_health)
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
@@ -25,7 +26,7 @@ func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 
 func attack(body: Node2D) -> void:
-	print ("Player Damaged")
+	print("Player Damaged")
 	if body is Player:
 		body.damage(damage_component.damage)
 
@@ -36,8 +37,7 @@ func _on_unit_died() -> void:
 	queue_free()
 	
 func take_damage(damage):
-	$HealthComponent.take_damage(damage)
-
+	stats.take_damage(damage)
 
 func aggression(body: Node2D) -> void:
 	state_machine.change_state($StateMachine/Attack)
