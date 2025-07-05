@@ -18,5 +18,12 @@ func apply(stat_component: StatComponent):
 		pass
 	elif type == GlobalState.ItemTypes.BOOTS:
 		print("Applying Boots")
-		pass	
+		stat_component.movement_speed += movement_speed
 	print("Updated Stats: ", stat_component)
+
+func copy(stat_component: ItemComponent) -> void:
+	health = stat_component.health
+	defense = stat_component.defense
+	movement_speed = stat_component.movement_speed
+	aoe = stat_component.aoe
+	type = stat_component.type

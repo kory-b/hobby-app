@@ -1,4 +1,4 @@
-class_name Robe extends Node
+class_name Boots extends Node
 
 
 @onready var item_component: ItemComponent = $ItemComponent

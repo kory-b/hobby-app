@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bemnu521cjn54"]
+
+[ext_resource type="Script" uid="uid://dao56o8aqekmg" path="res://game/entities/items/boots/boots.gd" id="1_0f7so"]
+[ext_resource type="Texture2D" uid="uid://bdy0utcmviqvw" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0108.png" id="2_0f7so"]
+[ext_resource type="Script" uid="uid://7c6vlmch5o7p" path="res://game/component/item_component.gd" id="3_7c7ae"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_308mh"]
+size = Vector2(15, 15)
+
+[node name="Boots" type="Area2D"]
+script = ExtResource("1_0f7so")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0f7so")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_308mh")
+
+[node name="ItemComponent" type="Node" parent="."]
+script = ExtResource("3_7c7ae")
+movement_speed = 200
+type = 3
+metadata/_custom_type_script = "uid://7c6vlmch5o7p"
+
+[connection signal="body_entered" from="." to="." method="picked_up"]

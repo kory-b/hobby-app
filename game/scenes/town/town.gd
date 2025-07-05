@@ -5,6 +5,8 @@ extends Node2D
 func _ready() -> void:
 	shards_label.text = "You have " + str(GlobalState.shards) + " shards"
 	
-
 func enter_dungeon() -> void:
 	SceneManager.change_scene("res://game/scenes/dungeon/dungeon.tscn")
+	
+func open_inventory() -> void:
+	SceneManager.change_scene("res://game/ui/inventory/inventory_scene.tscn")

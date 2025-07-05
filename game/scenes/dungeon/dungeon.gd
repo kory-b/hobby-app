@@ -98,3 +98,4 @@ func format_time(seconds: float) -> String:
 
 func enemy_died(position: Vector2i) -> void:
 	item_manager.spawn_robe(position)
+	item_manager.spawn_boots(position)

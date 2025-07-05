@@ -20,7 +20,9 @@ func pickup_item(item: ItemComponent):
 	if inventory.size() < max_inventory:
 		if !equipment.has(item.type):
 			print("Automatically Equipping: ", item)
-			equipment[item.type] = item
+			var item_copy = ItemComponent.new()
+			item_copy.copy(item)
+			equipment[item.type] = item_copy
 			item_equipped.emit()
 		else:
 			print("Item Picked Up: ", item)

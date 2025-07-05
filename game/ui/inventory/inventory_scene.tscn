@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0o0jot3vdp5b"]
+
+[ext_resource type="Script" uid="uid://c152fis6ko4dx" path="res://game/ui/inventory/inventory_scene.gd" id="1_8f3n0"]
+
+[node name="InventoryScene" type="Node2D"]
+script = ExtResource("1_8f3n0")
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "return to town
+"
+
+[connection signal="pressed" from="Button" to="." method="return_to_town"]

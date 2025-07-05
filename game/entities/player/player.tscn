@@ -437,11 +437,15 @@ script = ExtResource("6_v0nmi")
 unique_name_in_owner = true
 script = ExtResource("7_5wwt0")
 movement_speed = 200
+metadata/_custom_type_script = "uid://b5a7yon16mysx"
 
 [node name="BaseStats" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("7_5wwt0")
 max_health = 100
+current_health = 100
+defense = 10
+movement_speed = 200
 metadata/_custom_type_script = "uid://b5a7yon16mysx"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]

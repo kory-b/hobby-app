@@ -219,8 +219,8 @@ animation = &"fly"
 [node name="Stats" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("38_v1ynf")
-current_health = 100
 max_health = 100
+current_health = 100
 metadata/_custom_type_script = "uid://b5a7yon16mysx"
 
 [node name="Aggression Area" type="Area2D" parent="."]

@@ -10,10 +10,9 @@ var placeholder := true
 
 
 func _ready() -> void:
-	current_stats.init_health(base_stats.max_health)
 	progress_bar.init_value(base_stats.max_health)
 	state_machine.init(self)
-	
+	current_stats.copy(base_stats)
 	GlobalState.item_equipped.connect(item_equipped)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -38,8 +37,7 @@ func died() -> void:
 	
 func item_equipped() -> void:
 	print("Updating Stats")
-	current_stats = base_stats
+	current_stats.copy(base_stats)
 	for item in GlobalState.equipment.values():
 		item.apply(current_stats)
-	current_stats.max_health = current_stats.max_health
 	progress_bar.max_value = current_stats.max_health
