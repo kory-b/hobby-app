@@ -37,7 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://12a2tmjyyqjq" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_015.png" id="35_y5cf5"]
 [ext_resource type="Texture2D" uid="uid://dpnkukryw82wb" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_016.png" id="36_j1h8j"]
 [ext_resource type="Texture2D" uid="uid://6fv7102bkwic" path="res://assets/monsters/monster_0/idle/0_Monster_Idle_017.png" id="37_wjcik"]
-[ext_resource type="Script" uid="uid://b5a7yon16mysx" path="res://game/component/stat_component.gd" id="38_v1ynf"]
+[ext_resource type="Script" path="res://game/component/stat_component.gd" id="38_v1ynf"]
 [ext_resource type="Script" uid="uid://blionrlb4f6lq" path="res://common/state_machine/state_machine.gd" id="39_mmhgt"]
 [ext_resource type="Script" uid="uid://bxepu0oek8owd" path="res://game/entities/enemies/enemy/states/idle.gd" id="40_516tk"]
 [ext_resource type="Script" uid="uid://decf0twq6gaxx" path="res://game/entities/enemies/enemy/states/attack.gd" id="41_4i4lh"]
@@ -221,7 +221,7 @@ unique_name_in_owner = true
 script = ExtResource("38_v1ynf")
 current_health = 100
 max_health = 100
-metadata/_custom_type_script = "uid://b5a7yon16mysx"
+movement_speed = 50
 
 [node name="Aggression Area" type="Area2D" parent="."]
 collision_layer = 5
