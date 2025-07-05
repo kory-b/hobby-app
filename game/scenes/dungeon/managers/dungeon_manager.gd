@@ -7,7 +7,7 @@ class_name DungeonManager
 @export var min_room_size: int = 25 # The minimum size (width and height) of a room.
 @export var max_room_size: int = 30 # The maximum size (width and height) of a room.
 @export var hallway_width: int = 5 # The width of the hallways.
-@export var max_hall_length: int = 40  # max tiles per straight run
+@export var max_hall_length: int = 40 # max tiles per straight run
 @export var dungeon_seed: int = 0 # The seed for the random number generator. A value of 0 means a random seed.
 
 @export var player: CharacterBody2D
@@ -27,9 +27,9 @@ const WALL_ATLAS_COORDS = Vector2i(0, 0) # Atlas coordinates for the wall tile.
 # --- PRIVATE VARIABLES ---
 var _rng = RandomNumberGenerator.new() # The random number generator instance.
 var _exit_pos: Vector2i
-var dungeon_generator: Generator = RoomCarvingGenerator.new()
+var dungeon_generator: Generator = ProceduralRoomGenerator.new()
 
-var rooms:  Array: 
+var rooms: Array:
 	get:
 		return dungeon_generator.rooms
 
@@ -39,13 +39,24 @@ func _ready():
 
 # --- CORE GENERATION LOGIC ---
 func init_dungeon():
+	# Configure the generator with our settings
+	if dungeon_generator is ProceduralRoomGenerator:
+		var proc_gen = dungeon_generator as ProceduralRoomGenerator
+		proc_gen.room_size = min_room_size # Use configurable room size
+		proc_gen.num_rooms = _rng.randi_range(min_rooms, max_rooms) # Random number of rooms
+		proc_gen.world_size = world_size
+		proc_gen.dungeon_seed = dungeon_seed
+	
 	dungeon_generator.generate(floor_layer, wall_layer)
 	print("Rooms:", dungeon_generator.rooms)
 	print("Player Position: ", player.position)
 	var player_spawn = dungeon_generator.player_spawn
+	var exit_spawn = dungeon_generator.exit_spawn
 	var rooms = dungeon_generator.rooms
 	if dungeon_generator.rooms.size() > 0:
 		var tile_size = floor_layer.tile_set.tile_size
-		ladder.position = floor_layer.map_to_local(player_spawn) + Vector2(tile_size.x * 3, 0.0)
+		# Place ladder at exit spawn instead of offset from player
+		ladder.position = floor_layer.map_to_local(exit_spawn) + tile_size / 2.0
 		player.position = floor_layer.map_to_local(player_spawn) + tile_size / 2.0
 	print("Player Position: ", player.position)
+	print("Ladder Position: ", ladder.position)
