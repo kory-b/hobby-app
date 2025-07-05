@@ -5,27 +5,47 @@
 [node name="VictoryScene" type="Node"]
 script = ExtResource("1_m2cr5")
 
-[node name="ReturnToTownButton" type="Button" parent="."]
-offset_left = 273.0
-offset_top = 118.0
-offset_right = 343.0
-offset_bottom = 149.0
-text = "Return to Town"
-
 [node name="VictoryLabel" type="Label" parent="."]
-offset_left = 199.0
-offset_top = 30.0
-offset_right = 571.0
-offset_bottom = 105.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -186.0
+offset_top = 150.0
+offset_right = 186.0
+offset_bottom = 225.0
+grow_horizontal = 2
 text = "Congratulations!
 You've Slayed the
 Dungeon!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReturnToTownButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -15.5
+offset_right = 64.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Return to Town"
 
 [node name="MainMenuButton" type="Button" parent="."]
-offset_left = 263.0
-offset_top = 178.0
-offset_right = 359.0
-offset_bottom = 209.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = 40.0
+offset_right = 48.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Main Menu"
 
 [connection signal="pressed" from="ReturnToTownButton" to="." method="return_to_town"]

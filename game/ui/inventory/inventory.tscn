@@ -1,0 +1,169 @@
+[gd_scene load_steps=2 format=3 uid="uid://0h1jqahk6bbt"]
+
+[ext_resource type="Texture2D" uid="uid://byebjcter8a1r" path="res://assets/kenney_tiny-dungeon/Tiles/tile_0064.png" id="1_1ghxt"]
+
+[node name="Inventory" type="CanvasLayer"]
+
+[node name="InventoryPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(200, 450)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="InventoryContainer" type="VBoxContainer" parent="InventoryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="LoadoutContainer" type="CenterContainer" parent="InventoryPanel/InventoryContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel/InventoryContainer/LoadoutContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TopRow" type="CenterContainer" parent="InventoryPanel/InventoryContainer/LoadoutContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HatSlot" type="ColorRect" parent="InventoryPanel/InventoryContainer/LoadoutContainer/VBoxContainer/TopRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="MiddleRow" type="HBoxContainer" parent="InventoryPanel/InventoryContainer/LoadoutContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="StaffSlot" type="ColorRect" parent="InventoryPanel/InventoryContainer/LoadoutContainer/VBoxContainer/MiddleRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.125911, 0.125911, 0.125911, 1)
+
+[node name="RobeSlot" type="ColorRect" parent="InventoryPanel/InventoryContainer/LoadoutContainer/VBoxContainer/MiddleRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="ShieldSlot" type="ColorRect" parent="InventoryPanel/InventoryContainer/LoadoutContainer/VBoxContainer/MiddleRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="BottomRow" type="CenterContainer" parent="InventoryPanel/InventoryContainer/LoadoutContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BootsSlot" type="ColorRect" parent="InventoryPanel/InventoryContainer/LoadoutContainer/VBoxContainer/BottomRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="SeparatorContainer" type="HBoxContainer" parent="InventoryPanel/InventoryContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="SeparatorLine" type="Line2D" parent="InventoryPanel/InventoryContainer/SeparatorContainer"]
+points = PackedVector2Array(0, 0, 200, 0)
+width = 3.0
+default_color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="LootContainer" type="CenterContainer" parent="InventoryPanel/InventoryContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel/InventoryContainer/LootContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TopRow" type="HBoxContainer" parent="InventoryPanel/InventoryContainer/LootContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="LootSlot1" type="ColorRect" parent="InventoryPanel/InventoryContainer/LootContainer/VBoxContainer/TopRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.125911, 0.125911, 0.125911, 1)
+
+[node name="LootItem1" type="TextureRect" parent="InventoryPanel/InventoryContainer/LootContainer/VBoxContainer/TopRow/LootSlot1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_1ghxt")
+
+[node name="LootSlot2" type="ColorRect" parent="InventoryPanel/InventoryContainer/LootContainer/VBoxContainer/TopRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="LootSlot3" type="ColorRect" parent="InventoryPanel/InventoryContainer/LootContainer/VBoxContainer/TopRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="MiddleRow" type="HBoxContainer" parent="InventoryPanel/InventoryContainer/LootContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="LootSlot4" type="ColorRect" parent="InventoryPanel/InventoryContainer/LootContainer/VBoxContainer/MiddleRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.125911, 0.125911, 0.125911, 1)
+
+[node name="LootSlot5" type="ColorRect" parent="InventoryPanel/InventoryContainer/LootContainer/VBoxContainer/MiddleRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="LootSlot6" type="ColorRect" parent="InventoryPanel/InventoryContainer/LootContainer/VBoxContainer/MiddleRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="BottomRow" type="HBoxContainer" parent="InventoryPanel/InventoryContainer/LootContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="LootSlot7" type="ColorRect" parent="InventoryPanel/InventoryContainer/LootContainer/VBoxContainer/BottomRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.125911, 0.125911, 0.125911, 1)
+
+[node name="LootSlot8" type="ColorRect" parent="InventoryPanel/InventoryContainer/LootContainer/VBoxContainer/BottomRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="LootSlot9" type="ColorRect" parent="InventoryPanel/InventoryContainer/LootContainer/VBoxContainer/BottomRow"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+color = Color(0.12549, 0.12549, 0.12549, 1)

@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://blionrlb4f6lq" path="res://common/state_machine/state_machine.gd" id="4_cjfdk"]
 [ext_resource type="Script" uid="uid://dqruoijd822sn" path="res://game/entities/player/states/idle.gd" id="5_oic1i"]
 [ext_resource type="Script" uid="uid://cmmsmv02vlrhy" path="res://game/entities/player/states/move.gd" id="6_v0nmi"]
-[ext_resource type="Script" uid="uid://b5a7yon16mysx" path="res://game/component/stat_component.gd" id="7_5wwt0"]
+[ext_resource type="Script" path="res://game/component/stat_component.gd" id="7_5wwt0"]
 [ext_resource type="Script" uid="uid://dxai1d6m77wum" path="res://game/ui/health_bar/health_bar.gd" id="8_kn1iv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nybob"]
@@ -442,7 +442,6 @@ movement_speed = 200
 unique_name_in_owner = true
 script = ExtResource("7_5wwt0")
 max_health = 100
-metadata/_custom_type_script = "uid://b5a7yon16mysx"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = -33.0
