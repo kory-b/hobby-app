@@ -1,5 +1,6 @@
-extends Node
+# util/global_state.gd
 
+extends Node
 
 @export var shards: int = 0
 @export var dungeon_timed_out: bool = false
@@ -9,11 +10,11 @@ extends Node
 enum ItemTypes {HAT, ROBE, SHIELD, BOOTS}
 
 signal item_equipped
-signal item_picked_up
+signal item_picked_up(item)
 
 var inventory: Array = []
 var equipment: Dictionary = {}
-var max_inventory:int = 20
+var max_inventory:int = 9
 
 func pickup_item(item: ItemData):
 	print("pickup")
@@ -21,11 +22,11 @@ func pickup_item(item: ItemData):
 		if !equipment.has(item.type):
 			print("Automatically Equipping: ", item)
 			equipment[item.type] = item
-			item_equipped.emit()
+			item_equipped.emit(item)
 		else:
 			print("Item Picked Up: ", item)
 			inventory.append(item)
-		item_picked_up.emit()
+		item_picked_up.emit(item)
 		
 		print("Inventory: ", inventory)
 
